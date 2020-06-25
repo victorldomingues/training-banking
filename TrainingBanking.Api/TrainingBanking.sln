@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B3333622
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingBanking.UnitTests", "tests\TrainingBanking.UnitTests\TrainingBanking.UnitTests.csproj", "{6F446984-199E-4A0C-9D94-1582FEE1A2D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingBanking.IntegrationTests", "TrainingBanking.IntegrationTests\TrainingBanking.IntegrationTests.csproj", "{DFDA2279-1B3D-4DEC-B8BC-66DE939D0ED0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingBanking.IntegrationTests", "tests\TrainingBanking.IntegrationTests\TrainingBanking.IntegrationTests.csproj", "{DFDA2279-1B3D-4DEC-B8BC-66DE939D0ED0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
