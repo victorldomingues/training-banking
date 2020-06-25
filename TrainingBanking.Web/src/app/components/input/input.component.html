@@ -1,0 +1,7 @@
+<div [formGroup]="form">
+    <input type="{{type}}" formControlName="{{name}}" placeholder="{{placeholder}}" class="form-control" [mask]="mask">
+    <div *ngIf="form.controls[name].invalid && (form.controls[name].dirty || form.controls[name].touched)"
+        class="alert alert-danger">
+        {{error}}
+    </div>
+</div>

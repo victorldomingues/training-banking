@@ -1,0 +1,8 @@
+<ul class="nav flex-column">
+    <li class="nav-item title">
+        {{title}}
+    </li>
+    <li class="nav-item" *ngFor="let item of items">
+        <a class="nav-link" [routerLink]="item.route">{{item.title}}</a>
+    </li>
+</ul>

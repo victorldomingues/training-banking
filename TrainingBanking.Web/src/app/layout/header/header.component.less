@@ -1,0 +1,27 @@
+@text-color       : #EFEFEF;
+@text-hover-color : #333333;
+@background-color : #DABA81;
+
+.transition-properties(...) {
+    -webkit-transition: @arguments;
+    -moz-transition   : @arguments;
+    -o-transition     : @arguments;
+    transition        : @arguments;
+}
+
+header {
+    background: @background-color;
+    color     : @text-color;
+    padding   : 60px;
+
+    ul>li>a {
+        color      : @text-color;
+        font-weight: normal;
+    }
+
+    ul>li>a:hover {
+        color: @text-hover-color;
+        .transition-properties(color .3s; )
+    }
+
+}

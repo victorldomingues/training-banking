@@ -1,0 +1,20 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:58583/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "TrainingBanking": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:58583/"
+    },
+    "Azure Dev Spaces": {
+      "commandName": "AzureDevSpaces"
+    }
+  }
+}

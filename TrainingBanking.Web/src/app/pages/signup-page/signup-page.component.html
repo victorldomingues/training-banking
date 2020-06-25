@@ -1,0 +1,27 @@
+<div class="center">
+    <h2 class="title">Você está a um passo de criar sua conta Training Banking</h2>
+</div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <from [formGroup]="form" class="form">
+            <app-input type="text" [form]="form" name="name" placeholder="Nome" error="O Nome é obrigatório">
+            </app-input>
+            <app-input type="text" [form]="form" name="cpf" placeholder="CPF" mask="000.000.000-00"
+                error="O CPF é obrigatório e deve conter apenas números">
+            </app-input>
+            <app-input type="text" [form]="form" name="email" placeholder="E-mail"
+                error="O E-mail é obrigatório e deve ser válido ex: meu@email.com">
+            </app-input>
+            <app-input type="text" [form]="form" name="phone" placeholder="Telefone" error="O Telefone é obrigatório"
+                mask="(00) 0000-0000||(00) 0 0000-0000">
+            </app-input>
+            <app-input type="text" [form]="form" name="address" placeholder="Endereço" error="O Endereço é obrigatório">
+            </app-input>
+            <button type="button" class="btn" (click)="submit()" [disabled]="form.invalid">
+                Cadastrar
+            </button>
+        </from>
+    </div>
+    <div class="col-md-4"></div>
+</div>

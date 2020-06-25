@@ -1,0 +1,17 @@
+@import '../footer/footer.component.less';
+
+ul>.title {
+    color       : @text-title-color ;
+    font-weight : bold;
+    padding-left: 15px;
+}
+
+ul>li>a {
+    color      : @text-color;
+    font-weight: normal;
+}
+
+ul>li>a:hover {
+    color: @text-hover-color;
+    .transition-properties(color .3s; )
+}

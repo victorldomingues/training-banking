@@ -1,0 +1,23 @@
+<div class="signin justify-content-end">
+    <form *ngIf=" !isAuthenticated || user == null || user.name == null" [formGroup]="form">
+        <div class="form-group">
+            <label for="pwd"><b>Acesse</b> sua conta</label>
+            <div class="input-group mb-3">
+
+                <input type="text" class="form-control" placeholder="Digite seu CPF" [mask]="'000.000.000-00'"
+                    formControlName="cpf" />
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-light" [disabled]="form.invalid" (click)="signin()">
+                        Acessar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="isAuthenticated && user !=null && user.name !=null">
+        <div> <a [routerLink]="'/'" class="btn btn-outline-dark"> {{user.name.split(' ')[0]}} | Minha Conta </a> <a
+                class=" btn btn-danger" (click)="signout()">
+                Sair </a>
+        </div>
+    </div>
+</div>

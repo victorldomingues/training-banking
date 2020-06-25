@@ -1,0 +1,14 @@
+<header class="header">
+    <div class="row">
+        <div class="col-md-6">
+            <ul ngbNav class="nav">
+                <li class="nav-item" *ngFor="let item of items">
+                    <a class="nav-link" [routerLink]="item.route">{{item.title}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6 ">
+            <app-signin></app-signin>
+        </div>
+    </div>
+</header>
