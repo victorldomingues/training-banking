@@ -5,6 +5,8 @@ import { GuardService } from 'src/app/data/services/guard.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertModalComponent } from 'src/app/components/alert-modal/alert-modal.component';
 @Component({
   selector: 'app-signup-page',
   templateUrl: './signup-page.component.html',
@@ -15,7 +17,7 @@ export class SignupPageComponent implements OnInit, OnDestroy {
   form: FormGroup;
   busy = false;
 
-  constructor(private fb: FormBuilder, private guardService: GuardService, private router: Router) {
+  constructor(private fb: FormBuilder, private guardService: GuardService, private router: Router, private modalService: NgbModal) {
     this.form = this.fb.group({
       name: [null, Validators.required],
       cpf: [null, Validators.required],
@@ -49,11 +51,22 @@ export class SignupPageComponent implements OnInit, OnDestroy {
         this.form.enable();
         const user = this.guardService.getUser();
         this.guardService.tokenChangeObserver.next(user);
-      }, error => {
-        this.busy = false
-        this.form.enable;
+      }, ({ error }) => {
+        this.busy = false;
+        if (error && error.errors) {
+          const errStr = error.errors.map(x => x.message).join(',\n');
+          this.open(errStr);
+          return;
+        }
+        this.open('Ocorreu um erro inesperado');
       });
 
+  }
+
+  open(message: string) {
+    const modalRef = this.modalService.open(AlertModalComponent);
+    modalRef.componentInstance.content = message;
+    modalRef.componentInstance.title = 'Erro';
   }
 
 }

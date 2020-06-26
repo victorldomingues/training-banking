@@ -75,7 +75,7 @@ namespace TrainingBanking.Application.AccountContext.Commands
             var user = await _usersRepository.GetByCpf(request.Cpf);
 
             if (user != null)
-                _notifications.Add($"Já existe um usuário com o cpf {request.Cpf}.", nameof(Request.Cpf));
+                _notifications.Add($"Já existe um usuário com o CPF {request.Cpf}.", nameof(Request.Cpf));
 
             if (!_notifications.IsValid())
             {

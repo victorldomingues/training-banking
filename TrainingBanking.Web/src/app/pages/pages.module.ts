@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ServicesModule } from '../data/services/services.module';
 import { AccessDeniedPageComponent } from './access-denied-page/access-denied-page.component';
 import { SignupSuccessPageComponent } from './signup-success-page/signup-success.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 const PAGES = [
   SignupPageComponent,
@@ -41,6 +42,7 @@ const PAGES = [
     CommonModule,
     ReactiveFormsModule,
     ComponentsModule,
+    NgbModalModule,
     ServicesModule
   ],
   exports: [...PAGES]

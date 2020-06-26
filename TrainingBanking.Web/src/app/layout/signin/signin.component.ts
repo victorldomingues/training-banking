@@ -3,7 +3,8 @@ import { GuardService } from 'src/app/data/services/guard.service';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertModalComponent } from 'src/app/components/alert-modal/alert-modal.component';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -13,7 +14,8 @@ export class SigninComponent implements OnInit {
   user: User;
   isAuthenticated: boolean;
   form: FormGroup;
-  constructor(private guardService: GuardService, private router: Router, private fb: FormBuilder) {
+
+  constructor(private guardService: GuardService, private router: Router, private fb: FormBuilder, private modalService: NgbModal) {
     this.form = this.fb.group({
       cpf: [null, Validators.required]
     });
@@ -33,19 +35,31 @@ export class SigninComponent implements OnInit {
 
 
   }
+
   signin() {
     const { cpf } = this.form.value;
-    this.guardService.signin$(cpf).subscribe(result => {
+    this.guardService.signin$(cpf).subscribe(() => {
       const user = this.guardService.getUser();
       this.guardService.tokenChangeObserver.next(user);
       this.router.navigate(['']);
-    }, error => {
-
+    }, ({ error }) => {
+      if (error && error.errors) {
+        const errStr = error.errors.map(x => x.message).join(',\n');
+        this.open(errStr);
+        return;
+      }
+      this.open('Ocorreu um erro inesperado');
     });
   }
   signout() {
     this.guardService.clear();
     this.router.navigate(['access-denied']);
+  }
+
+  open(message: string) {
+    const modalRef = this.modalService.open(AlertModalComponent);
+    modalRef.componentInstance.content = message;
+    modalRef.componentInstance.title = 'Erro';
   }
 
 }
