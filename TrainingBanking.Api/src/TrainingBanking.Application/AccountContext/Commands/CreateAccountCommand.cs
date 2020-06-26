@@ -37,16 +37,24 @@ namespace TrainingBanking.Application.AccountContext.Commands
             {
                 return new User()
                 {
-                    Cpf = string.IsNullOrEmpty(Cpf) ? Cpf : Cpf
-                        .Replace(".","")
-                        .Replace(" ", "")
-                        .Replace("-", "")
-                        .Replace("\\",""),
+                    Cpf = Cpf,
                     Email = Email,
                     Phone = Phone,
                     Address = Address,
                     Name = Name
                 };
+            }
+
+            public void Treatment()
+            {
+                Cpf = string.IsNullOrEmpty(Cpf)
+                    ? Cpf
+                    : Cpf
+                        .Replace(".", "")
+                        .Replace(" ", "")
+                        .Replace("-", "")
+                        .Replace("\\", "")
+                        .Replace("/", "");
             }
         }
 
@@ -59,6 +67,8 @@ namespace TrainingBanking.Application.AccountContext.Commands
 
         public async Task<Response> Execute(Request request)
         {
+
+            request.Treatment();
 
             Validate(request);
 
@@ -89,8 +99,9 @@ namespace TrainingBanking.Application.AccountContext.Commands
             };
         }
 
-        private void  Validate(Request request)
+        public void Validate(Request request)
         {
+
             if (string.IsNullOrEmpty(request.Name))
                 _notifications.Add("O Nome deve ser informado", nameof(request.Name));
 
@@ -105,6 +116,7 @@ namespace TrainingBanking.Application.AccountContext.Commands
 
             if (string.IsNullOrEmpty(request.Phone))
                 _notifications.Add("O Telefone deve ser informado", nameof(request.Phone));
+
         }
     }
 }
